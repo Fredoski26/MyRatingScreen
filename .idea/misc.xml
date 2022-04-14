@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/compose-model-1637935191282.xml" value="0.9891696750902527" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.104" />
+        <entry key="app/src/main/res/drawable/ic_baseline_message_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/icon_backbutton.xml" value="0.104" />
       </map>
     </option>
   </component>

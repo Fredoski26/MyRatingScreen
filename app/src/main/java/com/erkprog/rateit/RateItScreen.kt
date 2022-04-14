@@ -1,6 +1,8 @@
 package com.erkprog.rateit
 
 import android.content.Context
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.os.Vibrator
 import android.view.ViewGroup
 import android.widget.Toast
@@ -8,11 +10,14 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsDraggedAsState
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -27,6 +32,8 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -35,6 +42,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,6 +51,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import androidx.core.content.res.ResourcesCompat
 import com.erkprog.rateit.components.*
 import com.erkprog.rateit.model.Rating
 import com.erkprog.rateit.util.FaceShakeAnimation
@@ -186,6 +195,7 @@ fun RateItScreen(modifier: Modifier = Modifier) {
                     /*modifier = Modifier.padding(),*/
                     modifier = Modifier.size(width = 319.dp, height = 58.dp),
                     enabled = true,
+                    shape = RoundedCornerShape(30.dp),
                     colors = ButtonDefaults.textButtonColors(
                         backgroundColor = Color(color = 0xFF101D70),
                         contentColor = Color.White
@@ -195,27 +205,64 @@ fun RateItScreen(modifier: Modifier = Modifier) {
                         width = 1.dp,
                         brush = SolidColor(Color(color = 0xFF101D70))
                     ),
-                    shape = MaterialTheme.shapes.medium
+                   // shape = MaterialTheme.shapes.medium
                 )
                 {
-                    Text(text = "Confirm",
-                            style = TextStyle(
+                    /*val vector = ImageVector.vectorResource(id = R.drawable.ic_launcher_foreground)
+                    val painter = rememberVectorPainter(image = vector)
+                    Canvas(modifier = Modifier.fillMaxSize()) {
+                        with(painter) {
+                            draw(painter.intrinsicSize)
+                        }
+                    }*/
+
+
+                    Text(
+                        modifier = Modifier.padding(start = 10.dp, end = 30.dp),
+                        text = "Confirm",
+                        style = TextStyle(
                             color = Color.White.copy(),
-                           fontSize = 18.sp
-                    ),
-                    textAlign = TextAlign.Start
+                            fontSize = 18.sp
+
+                        ),
+                        textAlign = TextAlign.Start
                     )
-                    Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                   // Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+
+                    /*  Icon(
+                        modifier = Modifier
+                            .size(width = 60.dp, height = 60.dp)
+
+                            . padding(start = 200.dp),
+                        painter = painterResource(R.drawable.ic_baseline_message_24),
+                        tint = Color(color = 0xFFE91E63),
+                        contentDescription = null
+                    )*/
+
+
+
+
 
                     Icon(
-                        Icons.Filled.Menu,
+                        painter = painterResource(id = R.drawable.ic_circle),
                         contentDescription = "Favorite",
-                        modifier = Modifier.padding(start = 200.dp),
+                        modifier = Modifier
+                            .fillMaxSize(1.8f)
+                            // .size(width = 60.dp, height = 60.dp),
+                            .padding(start = 140.dp, end = 0.dp),
+                        )
+                   Icon(
+                        painter = painterResource(id = R.drawable.ic_baseline_arrow_back_24),
+                        contentDescription = "Favorite",
+                        modifier = Modifier
+                            .size(width = 60.dp, height = 60.dp),
+
+                        )
 
 
-                    )
 
                 }
+
 
             }
         }
